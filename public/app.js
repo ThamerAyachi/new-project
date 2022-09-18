@@ -6,9 +6,5 @@ button.addEventListener("click", () => {
 });
 
 const sendUrl = (text) => {
-  // fetch(`http://localhost:4000/download?url=${text}`, {
-  //   method: "Get",
-  // }).then((res) => res.json().then((res) => console.log(res)));
-
   window.location.href = `http://localhost:8000/download?url=${text}`;
 };
