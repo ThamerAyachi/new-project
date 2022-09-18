@@ -3,7 +3,7 @@ import path from "path";
 import ytdl from "ytdl-core";
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 
 app.use("/static", express.static(path.join(__dirname, "../public")));
 
