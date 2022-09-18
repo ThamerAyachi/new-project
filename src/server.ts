@@ -14,6 +14,17 @@ app.get("/", (req: Request, res: Response) => {
 app.get("/download", (req: Request, res: Response) => {
   const url: string = req.query.url as string;
   res.json(url);
+
+  const date = new Date();
+
+  res.header(
+    "Content-Disposition",
+    `attachment; filename="${date.getTime()}.mp4"`
+  );
+
+  ytdl(url, {
+    format: "mp4" as unknown as undefined,
+  }).pipe(res);
 });
 
 app.listen(PORT, () => {
