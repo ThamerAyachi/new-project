@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import path from "path";
 import ytdl from "ytdl-core";
 
@@ -7,12 +7,12 @@ const PORT = process.env.PORT || 5000;
 
 app.use("/static", express.static(path.join(__dirname, "../public")));
 
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
-app.get("/download", (req, res) => {
-  const url = req.query.url;
+app.get("/download", (req: Request, res: Response) => {
+  const url: string = req.query.url as string;
   res.json(url);
 });
 
