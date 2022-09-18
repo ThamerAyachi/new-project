@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import path from "path";
 import ytdl from "ytdl-core";
+import fs from "fs";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -13,7 +14,6 @@ app.get("/", (req: Request, res: Response) => {
 
 app.get("/download", (req: Request, res: Response) => {
   const url: string = req.query.url as string;
-  res.json(url);
 
   const date = new Date();
 
@@ -22,9 +22,7 @@ app.get("/download", (req: Request, res: Response) => {
     `attachment; filename="${date.getTime()}.mp4"`
   );
 
-  ytdl(url, {
-    format: "mp4" as unknown as undefined,
-  }).pipe(res);
+  ytdl(url).pipe(res);
 });
 
 app.listen(PORT, () => {
